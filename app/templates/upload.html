@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div class="container">
+  <header class="jumbotron my-4">
+    
+     
+     
+     
+     
+     
+     
+  
+<h1 >Upload Your Creations</h1>
+<p> Please enter a descirption select an image to upload.</p>
+
+{% include 'flash_messages.html' %}
+
+{# Add the appropriate method and enctype attributes to the form tag to allow for file uploads #}
+
+<form action="{{ url_for('upload') }}" method = "post" enctype="multipart/form-data">
+
+  {# Add the file upload field as you learnt for Flask-WTF #}
+
+  {{ form.description.label }}
+  {{ form.description }}
+  {{ form.csrf_token }}
+
+  {{ form.image.label }}
+  {{ form.image }}
+  <button type="submit" name="submit" class="btn btn-primary">Upload file</button>
+</form>
+
+</header>
+{% endblock %}

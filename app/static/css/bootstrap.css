@@ -82,6 +82,12 @@ hr {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  
+}
+
+h4.media-heading{
+  
+  margin-right: 100px;
 }
 
 p {
@@ -365,6 +371,7 @@ h1, h2, h3, h4, h5, h6,
   font-weight: 500;
   line-height: 1.2;
   color: inherit;
+  
 }
 
 h1, .h1 {
@@ -381,6 +388,7 @@ h3, .h3 {
 
 h4, .h4 {
   font-size: 1.5rem;
+  
 }
 
 h5, .h5 {
@@ -5151,6 +5159,7 @@ tbody.collapse.show {
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start;
+  margin-right: 100px;
 }
 
 .media-body {

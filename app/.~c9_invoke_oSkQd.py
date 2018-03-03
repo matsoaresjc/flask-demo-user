@@ -9,14 +9,11 @@ from app import app, db, login_manager
 from flask import render_template, request, redirect, url_for, flash,session,abort
 from flask_login import login_user, logout_user, current_user, login_required
 from forms import LoginForm, SignUpForm
-from models import user_profile
-from werkzeug.security import check_password_hash,generate_password_hash
+from models import UserProfile
+from werkzeug.security import check_password_hash
 from forms import UploadForm
 from werkzeug.utils import secure_filename
 import os
-
-
-
 
 ###
 # Routing for your application.
@@ -31,21 +28,13 @@ def home():
 @app.route('/recipe')
 def recipe():
     """Render website's recipe page."""
-    return render_template('recipe.html') 
-    
-    
-@app.route('/blog')
-def blog():
-    """Render website's recipe page."""
-    return render_template('blog.html')    
+    return render_template('recipe.html')    
 
 
 @app.route('/about')
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Foodies")
-    
-    
 
 
 @app.route('/secure-page')
@@ -56,50 +45,49 @@ def secure_page():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    form = SignUpForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        user = user_profile(request.form['first_name'], request.form['last_name'], request.form['username'], request.form['password'], request.form['email'])
-        db.session.add(user)
-        db.session.commit()
-        flash('New user added')
-        #add code to go to next page
-        return redirect(url_for('home'))
-    return render_template('signup.html', form=form)
+    form= SignUpForm()
+    return render_template('signup.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    
-    form = LoginForm()
-    
     if current_user.is_authenticated:
         # if user is already logged in, just redirect them to our secure page
         # or some other page like a dashboard
         return redirect(url_for('secure_page'))
-    
-    if form.validate_on_submit():
-        user = user_profile.query.filter_by(username = form.username.data).first()
-        if user:
-            if check_password_hash(user.password, form.password.data):
-                
-                
-    
-                if user is not None and check_password_hash(user.password, form.password.data):
-                    remember_me = False
 
-                    if 'remember_me' in request.form:
-                        remember_me = True
+    # Here we use a class of some kind to represent and validate our
+    # client-side form data. For example, WTForms is a library that will
+    # handle this for us, and we use a custom LoginForm to validate.
+    form = LoginForm()
+    # Login and validate the user.
+    if request.method == 'POST' and form.validate_on_submit():
+        # Query our database to see if the username and password entered
+        # match a user that is in the database.
+        username = form.username.data
+        password = form.password.data
+
+        # user = UserProfile.query.filter_by(username=username, password=password)\
+        # .first()
+        # or
+        user = UserProfile.query.filter_by(username=username).first()
+
+        if user is not None and check_password_hash(user.password, password):
+            remember_me = False
+
+            if 'remember_me' in request.form:
+                remember_me = True
 
             # If the user is not blank, meaning if a user was actually found,
             # then login the user and create the user session.
             # user should be an instance of your `User` class
-                login_user(user, remember=remember_me)
+            login_user(user, remember=remember_me)
 
-                flash('Logged in successfully.', 'success')
+            flash('Logged in successfully.', 'success')
 
-                next_page = request.args.get('next')
-                return redirect(next_page or url_for('home'))
-            else:
-                flash('Username or Password is incorrect.', 'danger')
+            next_page = request.args.get('next')
+            return redirect(next_page or url_for('home'))
+        else:
+            flash('Username or Password is incorrect.', 'danger')
 
     flash_errors(form)
     return render_template('login.html', form=form)
@@ -131,14 +119,14 @@ def upload():
         img_data.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
         flash('File Saved', 'success')
         return redirect(url_for('home'))
-
+def gallery():
     return render_template('upload.html', form = img)
 
 @app.route('/gallery')
 #@login_required
 def gallery():
     #displays users' pictures
-    return render_template('gallery.html', images = get_uploaded_images())
+    return render_template('t.html', images = get_uploaded_images())
 
 def get_uploaded_images():
 	rootdir = os.getcwd()
@@ -156,7 +144,7 @@ def get_uploaded_images():
 
 @login_manager.user_loader
 def load_user(id):
-    return user_profile.query.get(int(id))
+    return UserProfile.query.get(int(id))
 
 
 # Flash errors from the form if validation fails

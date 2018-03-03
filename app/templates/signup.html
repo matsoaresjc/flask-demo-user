@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block main %}
+<div class="login-form text-center">
+<h1>Sign Up</h1>
+<form action="{{ url_for('signup')}}" method="post">
+  {{ form.csrf_token }}
+  <div class="form-group">
+    {{ form.first_name.label }}
+    {{ form.first_name(class='form-control') }}
+  </div>
+  <div class="form-group">
+    {{ form.last_name.label }}
+    {{ form.last_name(class='form-control') }}
+  </div>
+  <div class="form-group">
+    {{ form.email.label }}
+    {{ form.email(class='form-control') }}
+  </div>
+  <div class="form-group">
+    {{ form.username.label }}
+    {{ form.username(class='form-control') }}
+  </div>
+  <div class="form-group">
+    {{ form.password.label }}
+    {{ form.password(class='form-control') }}
+  </div>
+  <button type="submit" name="submit" class="btn btn-primary btn-block">Sign Up</button>
+</form>
+</div>
+{% endblock %}

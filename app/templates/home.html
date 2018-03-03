@@ -1,7 +1,84 @@
 {% extends "base.html" %}
-
+{% block css %}<link href ="{{ url_for('static',filename = 'css/heroic-features.css') }}" rel="stylesheet"> {% endblock%}
 {% block main %}
-<h1>Demo User App</h1>
-{% include 'flash_messages.html' %}
-<p class="lead">This demo app demonstrates the use of Flask-Login and Flask-Migrate extensions</p>
-{% endblock %}
+
+<!--Testing thing -->
+  <a href="https://seal.beyondsecurity.com/vulnerability-scanner-verification/security-website-matsoaresuwi.c9users.io"><img src="https://seal.beyondsecurity.com/verification-images/security-website-matsoaresuwi.c9users.io/vulnerability-scanner-2.gif" alt="Website Security Test" border="0" /></a>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Jumbotron Header -->
+      <header class="jumbotron my-4">
+        <img  src="https://i.imgur.com/VDGlegG.png" class = "logo" alt="logo">
+        <h1 class="display-3">Welcome!</h1>
+        <p class="lead">Foodiez is a site for food enthusiasts to learn how to prepare other food lovers' favourite dishes. Users can share their favourite dishes as well as upload pictures of their creations. Register now to begin sharing! </p>
+        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Get Started!</a>
+      </header>
+
+      <!-- Page Features -->
+      <div class="row text-center">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="https://rdc.rdcimage.com/partner-images/362874/micrositeimage_photo1.jpg" alt="ox-tail">
+            <div class="card-body">
+              <h4 class="card-title">Oxtail & Rice & Peas</h4>
+              <p class="card-text">This Jamaican favourite will surely bring a smile to your Jamaican peers' faces!</p>
+            </div>
+            <div class="card-footer">
+              <a href="{{ url_for('recipe') }}" class="btn btn-primary">Find Out More!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://originalflava.com/wp-content/uploads/2014/05/Ackee-saltfish.jpg" alt="ackee & saltfish">
+            <div class="card-body">
+              <h4 class="card-title">Ackee & Saltfish</h4>
+              <p class="card-text">Learn how to create Jamaica's national dish! This signature meal is typically eaten for breakfast but can be had at any time of the day.</p>
+            </div>
+            <div class="card-footer">
+              <a href="{{ url_for('recipe') }}" class="btn btn-primary">Find Out More!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://www.theveryveryhungrycaterpillar.com/wp-content/uploads/2014/03/wp111.jpg" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Jerk Chicken & Festival</h4>
+              <p class="card-text">This mouth-watering dish is a staple of Jamaican Friday nights. Learn how to prepare this dish to kickstart your weekend!</p>
+            </div>
+            <div class="card-footer">
+              <a href="{{ url_for('recipe') }}" class="btn btn-primary">Find Out More!</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="http://2.bp.blogspot.com/-Ofk3kMjVRN4/Uz5Zz2KrMOI/AAAAAAAACtQ/XvEBh5ZxgYU/s1600/DSC_0022.JPG" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Stew Peas</h4>
+              <p class="card-text">Stew peas is a Jamaican stew prepared using coconut milk, beans and salted meat.</p>
+            </div>
+            <div class="card-footer">
+              <a href="{{ url_for('recipe') }}" class="btn btn-primary">Find Out More!</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  {% endblock %}

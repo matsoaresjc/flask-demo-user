@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-  <span class="navbar-brand mb-0 h1">Demo User App</span>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <span class="navbar-brand mb-0 h1">Foodiez </span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,7 +12,16 @@
         <a class="nav-link" href="{{ url_for('about') }}">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('secure_page') }}">Secure Page</a>
+        <a class="nav-link" href="{{ url_for('recipe') }}">Recipes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('upload') }}">Upload</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('gallery') }}">Gallery</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('blog') }}">Blog</a>
       </li>
     </ul>
 
@@ -25,6 +34,10 @@
           <li class="nav-item active">
             <a class="nav-link" href="{{ url_for('login') }}">Login</a>
           </li>
+          <li>
+            <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>
+          </li>
+          <!--<li  <a class="nav-link" href="{{ url_for('secure_page') }}">Sign Up</a>-->
       {% endif %}
     </ul>
   </div>

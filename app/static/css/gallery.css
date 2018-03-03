@@ -1,0 +1,18 @@
+
+
+.wrapper
+{
+    display: inline-block; 
+    grid-template-columns: 200px, 200px, 200px; 
+}
+
+img 
+{
+   width: 300px;
+    height: 250px;
+    padding: 10px;
+    margin-left: 50%;
+    margin-left: 50%;
+    
+    
+}
